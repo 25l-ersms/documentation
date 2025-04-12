@@ -6,28 +6,31 @@
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx} % Use Times Font
 
-
 \usepackage[pdftex]{graphicx} % Required for including pictures
-\usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} % Format links for pdf
+\usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} %
+% Format links for pdf
 \usepackage{calc} % To reset the counter in the document after title page
 \usepackage{enumitem} % Includes lists
 \setitemize{noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt}
 \setenumerate{noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt}
 \frenchspacing % No double spacing between sentences
-\usepackage[a4paper, lmargin=0.1666\paperwidth, rmargin=0.1666\paperwidth, tmargin=0.1111\paperheight, bmargin=0.1111\paperheight]{geometry} %margins
-
+\usepackage[a4paper, lmargin=0.1666\paperwidth,
+  rmargin=0.1666\paperwidth, tmargin=0.1111\paperheight,
+bmargin=0.1111\paperheight]{geometry} %margins
 
 % \usepackage[all]{nowidow} % Tries to remove widows
-\usepackage[protrusion=true,expansion=true]{microtype} % Improves typography, load after fontpackage is selected
-
+\usepackage[protrusion=true,expansion=true]{microtype} % Improves
+% typography, load after fontpackage is selected
 
 %-----------------------
 % Set pdf information and add title, fill in the fields
 %-----------------------
-\hypersetup{ 	
-pdfsubject = {},
-pdftitle = {Hands4Hire},
-pdfauthor = {Marta Borek \and Krzysztof Fijałkowski \and Tomasz Owienko \and Michał Jakomulski \and Wojciech Sekuła \and Arkadiusz Niedzielski}
+\hypersetup{
+  pdfsubject = {},
+  pdftitle = {Hands4Hire},
+  pdfauthor = {Marta Borek \and Krzysztof Fijałkowski \and Tomasz
+    Owienko \and Michał Jakomulski \and Wojciech Sekuła \and Arkadiusz
+  Niedzielski}
 }
 
 %-----------------------
@@ -36,7 +39,8 @@ pdfauthor = {Marta Borek \and Krzysztof Fijałkowski \and Tomasz Owienko \and Mi
 \begin{document}
 
 \title{Hands4Hire - platform for connecting handymen with customers}
-\author{Marta Borek \and Krzysztof Fijałkowski \and Tomasz Owienko \and Michał Jakomulski \and Wojciech Sekuła \and Arkadiusz Niedzielski}
+\author{Marta Borek \and Krzysztof Fijałkowski \and Tomasz Owienko
+\and Michał Jakomulski \and Wojciech Sekuła \and Arkadiusz Niedzielski}
 \date{}
 \maketitle
 
@@ -50,223 +54,256 @@ pdfauthor = {Marta Borek \and Krzysztof Fijałkowski \and Tomasz Owienko \and Mi
 
 \subsubsection{Create Profile}
 
-\textbf{Actor:} Unregistered User\\
-\textbf{Preconditions:} User is not yet registered or logged in
-\textbf{Basic steps:}
+\textbf{Actor:} Unregistered User
+
+\noindent \textbf{Preconditions:} User is not yet registered or logged in
+
+\noindent \textbf{Basic steps:}
 \begin{enumerate}[noitemsep]
-\item User opens registration page
-\item Authenticates Google account
-\item Picks role
-  \begin{itemize}[noitemsep]
-  \item \textit{Handyman} - service provider
-  \item \textit{Customer} - service recipient
-  \end{itemize}
-\item Provides detailed data necessary for the role
-\item Pays registration fee
-\item System creates profile and redirects to dashboard
+  \item User opens registration page
+  \item Authenticates Google account
+  \item Picks role
+    \begin{itemize}[noitemsep]
+      \item \textit{Handyman} - service provider
+      \item \textit{Customer} - service recipient
+    \end{itemize}
+  \item Provides detailed data necessary for the role
+  \item Pays registration fee
+  \item System creates profile and redirects to dashboard
 \end{enumerate}
-\textbf{Postconditions:} Customer profile is stored in the system
+
+\noindent \textbf{Postconditions:} Customer profile is stored in the system
 
 \subsubsection{Edit Profile}
 
-\textbf{Actor:} Registered Customer or Handyman\\
-\textbf{Preconditions:} User is logged in
-\textbf{Basic steps:}
+\textbf{Actor:} Registered Customer or Handyman
+
+\noindent \textbf{Preconditions:} User is logged in
+
+\noindent \textbf{Basic steps:}
 \begin{enumerate}
-\item User navigates to ``Edit Profile'' from the home page
-\item Updates fields (e.g. skills, address, contact info)
-\item Submits changes
-\item System syncs data and confirms updates
+  \item User navigates to ``Edit Profile'' from the home page
+  \item Updates fields (e.g. skills, address, contact info)
+  \item Submits changes
+  \item System syncs data and confirms updates
 \end{enumerate}
-\textbf{Postconditions:} Profile gets updated and reflects latest data
+
+\noindent \textbf{Postconditions:} Profile gets updated and reflects latest data
 
 \subsubsection{Update Calendar}
 
-\textbf{Actor:} Registered Handyman\\
-\textbf{Preconditions:} Handyman is logged in
-\textbf{Basic steps:}
+\textbf{Actor:} Registered Handyman
+
+\noindent \textbf{Preconditions:} Handyman is logged in
+
+\noindent \textbf{Basic steps:}
 \begin{enumerate}
-\item Handyman opens calendar from profile page
-\item Adds/deletes available slots
-\item Can change status of a previously \textit{accepted} booking to \textit{canceled}
-\item Submits changes
-\item System syncs data and confirms updates
+  \item Handyman opens calendar from profile page
+  \item Adds/deletes available slots
+  \item Can change status of a previously \textit{accepted} booking
+    to \textit{canceled}
+  \item Submits changes
+  \item System syncs data and confirms updates
 \end{enumerate}
-\textbf{Postconditions:}
+
+\noindent \textbf{Postconditions:}
 \begin{itemize}
-\item \textit{Canceled} booking removed from the calendar, still visible in history
-\item Updated calendar is reflected in searches and Handyman profile
-\item Customer gets notification about Booking's status change 
+  \item \textit{Canceled} booking removed from the calendar, still
+    visible in history
+  \item Updated calendar is reflected in searches and Handyman profile
+  \item Customer gets notification about Booking's status change
 \end{itemize}
 
-\subsubsection{Search for Handymen}
+\subsubsection{Search for Handyman}
 
-\textbf{Actor:} Registered Customer \\
-\textbf{Preconditions:} Customer is logged in
-\textbf{Basic steps:}
+\textbf{Actor:} Registered Customer
+
+\noindent \textbf{Preconditions:} Customer is logged in
+
+\noindent \textbf{Basic steps:}
 \begin{enumerate}
-\item Customer opens search page
-\item Selects filters (e.g. type of service, geographical range, availability, customer rating)
-\item Submits search
-\item System displays matching Handymen profiles
+  \item Customer opens search page
+  \item Selects filters (e.g. type of service, geographical range,
+    availability, customer rating)
+  \item Submits search
+  \item System displays matching Handymen profiles
 \end{enumerate}
-\textbf{Postconditions:} Filtered list is shown
+
+\noindent \textbf{Postconditions:} Filtered list is shown
 
 \subsubsection{View Handyman Profile}
 
-\textbf{Actor:} Registered Customer or Handyman \\
-\textbf{Preconditions:}
+\textbf{Actor:} Registered Customer or Handyman
+
+\noindent \textbf{Preconditions:}
 \begin{enumerate}
-\item User is logged in
-\item Handyman Search/Filtering results available
-\item \textbf{Or For Customer:} Handyman already in Customer's Booking History
+  \item User is logged in
+  \item Handyman Search/Filtering results available
+  \item \textbf{Or For Customer:} Handyman already in Customer's Booking History
 \end{enumerate}
 
-\textbf{Basic steps:}
+\noindent \textbf{Basic steps:}
 \begin{enumerate}
-\item Select Handyman from Search List or Booking History
-\item View Full Profile
-  \begin{itemize}
-  \item Contact Info
-  \item Skills & Experience
-  \item Calendar availability
-  \item User rating and comments from previous jobs
-  \end{itemize}
+  \item Select Handyman from Search List or Booking History
+  \item View Full Profile
+    \begin{itemize}
+      \item Contact Info
+      \item Skills \& Experience
+      \item Calendar availability
+      \item User rating and comments from previous jobs
+    \end{itemize}
 \end{enumerate}
-\textbf{Postconditions:} System displays public Handyman's Profile
 
+\noindent \textbf{Postconditions:} System displays public Handyman's Profile
 
 \subsubsection{Book Handyman}
 
-\textbf{Actor:} Registered Customer \\
-\textbf{Preconditions:}
+\textbf{Actor:} Registered Customer
+
+\noindent \textbf{Preconditions:}
 \begin{enumerate}
-\item Customer is logged in
-\item Selected Handyman's Profile open
+  \item Customer is logged in
+  \item Selected Handyman's Profile open
 \end{enumerate}
 
-\textbf{Basic steps:}
+\noindent \textbf{Basic steps:}
 \begin{enumerate}
-\item Select time slot from Handyman's Calendar
-\item Leave optional service note
-\item Submit request
+  \item Select time slot from Handyman's Calendar
+  \item Leave optional service note
+  \item Submit request
 \end{enumerate}
-\textbf{Postconditions:}
+
+\noindent \textbf{Postconditions:}
 \begin{itemize}
-\item Booking request stored in the system with \textit{pending} status
-\item Request added to Customer's booking history, visible in Customer's dashboard
-\item Notification sent to Handyman, request visible in Handyman's dashboard  
+  \item Booking request stored in the system with \textit{pending} status
+  \item Request added to Customer's booking history, visible in
+    Customer's dashboard
+  \item Notification sent to Handyman, request visible in Handyman's dashboard
 \end{itemize}
 
 \subsubsection{View Customer Profile}
 
-\textbf{Actor:} Registered Handyman or Customer \\
-\textbf{Preconditions:}
+\textbf{Actor:} Registered Handyman or Customer
+
+\noindent \textbf{Preconditions:}
 \begin{enumerate}
-\item User is logged in
-\item Handyman received Booking from a Customer
-\item OR User views comments left by other Customers on Handyman's Profile
+  \item User is logged in
+  \item Handyman received Booking from a Customer
+  \item OR User views comments left by other Customers on Handyman's Profile
 \end{enumerate}
 
-\textbf{Basic steps:}
+\noindent \textbf{Basic steps:}
 \begin{enumerate}
-\item Select Customer from Booking request, or Comments List
-\item View Full Profile
-  \begin{itemize}
-  \item Contact Info
-  \item Booking History
-  \item Comments and ratings for previous jobs  
-  \end{itemize}
+  \item Select Customer from Booking request, or Comments List
+  \item View Full Profile
+    \begin{itemize}
+      \item Contact Info
+      \item Booking History
+      \item Comments and ratings for previous jobs
+    \end{itemize}
 \end{enumerate}
-\textbf{Postconditions:} System displays public Customer Profile
 
+\noindent \textbf{Postconditions:} System displays public Customer Profile
 
 \subsubsection{Accept or Decline Booking}
 
-\textbf{Actor:} Registered Handyman \\
-\textbf{Preconditions:}
+\textbf{Actor:} Registered Handyman
+
+\noindent \textbf{Preconditions:}
 \begin{enumerate}
-\item Handyman received Booking from a Customer
-\item Booking status is \textit{pending}
+  \item Handyman received Booking from a Customer
+  \item Booking status is \textit{pending}
 \end{enumerate}
 
-\textbf{Basic steps:}
+\noindent \textbf{Basic steps:}
 \begin{enumerate}
-\item Handyman received a Booking Request notification (in-app/e-mail)
-\item Notification redirection to Booking Request, with eventual authentication step
-\item OR Open Booking request directly from dashboard
-\item Booking Request shows:
-  \begin{itemize}
-  \item Customer who placed the request
-  \item Date, Time \& Duration
-  \item Service note from the Customer
-  \item Current status \textit{pending, canceled}
-  \end{itemize}
-\item If not \textit{canceled} Handyman can Accept or Decline with designated buttons
-\item System confirms the status update
+  \item Handyman received a Booking Request notification (in-app/e-mail)
+  \item Notification redirection to Booking Request, with eventual
+    authentication step
+  \item OR Open Booking request directly from dashboard
+  \item Booking Request shows:
+    \begin{itemize}
+      \item Customer who placed the request
+      \item Date, Time \& Duration
+      \item Service note from the Customer
+      \item Current status \textit{pending, canceled}
+    \end{itemize}
+  \item If not \textit{canceled} Handyman can Accept or Decline with
+    designated buttons
+  \item System confirms the status update
 \end{enumerate}
-\textbf{Postconditions:}
+
+\noindent \textbf{Postconditions:}
 \begin{itemize}
-\item Booking status changes to \textit{accepted} or \textit{declined}
-\item If \textit{accepted}, is now visible in the Handyman availability Calendar and will be reflected in the Handyman Searches
-\item Customer gets a notification about the Booking status change
+  \item Booking status changes to \textit{accepted} or \textit{declined}
+  \item If \textit{accepted}, is now visible in the Handyman
+    availability Calendar and will be reflected in the Handyman Searches
+  \item Customer gets a notification about the Booking status change
 \end{itemize}
-
 
 \subsubsection{View \& Cancel Booking Status}
 
-\textbf{Actor:} Registered Customer \\
-\textbf{Preconditions:}
-\begin{enumerate}
-\item Customer placed at least one Booking
-\end{enumerate}
-\textbf{Basic steps:}
-\begin{enumerate}
-\item Customer goes to Booking History on home page
-\item Selects an entry to open a Booking page
-\item OR Notification about Booking status update redirection to Booking Request, with eventual authentication step
-\item Booking entry shows:
-  \begin{itemize}
-  \item Booked Handyman
-  \item Date, Time \& Duration
-  \item Service note from the Customer
-  \item Current status \textit{accepted, declined, pending, canceled}
-  \end{itemize}
-\item If \textit{accepted} or \textit{pending}, Customer can cancel the request
-\item System confirms eventual status update
-\end{enumerate}
-\textbf{Postconditions:}
-\begin{itemize}
-\item Booking status changes to \textit{canceled}
-\item If previously \textit{accepted} by Handyman, it is now removed from the Handyman availability Calendar and will be reflected in the Handyman Searches
-\item Handyman gets a notification about the Booking status change
-\end{itemize}
+\textbf{Actor:} Registered Customer
 
+\noindent \textbf{Preconditions:}
+\begin{enumerate}
+  \item Customer placed at least one Booking
+\end{enumerate}
+
+\noindent \textbf{Basic steps:}
+\begin{enumerate}
+  \item Customer goes to Booking History on home page
+  \item Selects an entry to open a Booking page
+  \item OR Notification about Booking status update redirection to
+    Booking Request, with eventual authentication step
+  \item Booking entry shows:
+    \begin{itemize}
+      \item Booked Handyman
+      \item Date, Time \& Duration
+      \item Service note from the Customer
+      \item Current status \textit{accepted, declined, pending, canceled}
+    \end{itemize}
+  \item If \textit{accepted} or \textit{pending}, Customer can cancel
+    the request
+  \item System confirms eventual status update
+\end{enumerate}
+
+\noindent \textbf{Postconditions:}
+\begin{itemize}
+  \item Booking status changes to \textit{canceled}
+  \item If previously \textit{accepted} by Handyman, it is now
+    removed from the Handyman availability Calendar and will be
+    reflected in the Handyman Searches
+  \item Handyman gets a notification about the Booking status change
+\end{itemize}
 
 \subsubsection{Contact Between Customer \& Handyman}
 
-\textbf{Actor:} Registered Customer or Handyman \\
-\textbf{Preconditions:}
-\begin{enumerate}
-\item Booking request placed by Customer
-\item OR User Profile viewed
-\item OR Previously registered in the chat history
-\end{enumerate}
-\textbf{Basic steps:}
-\begin{enumerate}
-\item User selects ``Message'' for a new chat from Recipient's Profile
-\item OR an active chat from chats list on the dashboard
-\item Enters message in chat interface
-\item Sends message
-\item Recipient receives notification
-\end{enumerate}
-\textbf{Postconditions:}
-\begin{itemize}
-\item Notification about a new message sent to the Recipient
-\item System stores new message and updates the chat history
-\item If no previous chat history with the Recipient, System adds new chat to the chat history, available from User dashboard
-\end{itemize}
+\textbf{Actor:} Registered Customer or Handyman
 
+\noindent \textbf{Preconditions:}
+\begin{enumerate}
+  \item Booking request placed by Customer
+  \item OR User Profile viewed
+  \item OR Previously registered in the chat history
+\end{enumerate}
+
+\noindent \textbf{Basic steps:}
+\begin{enumerate}
+  \item User selects ``Message'' for a new chat from Recipient's Profile
+  \item OR an active chat from chats list on the dashboard
+  \item Enters message in chat interface
+  \item Sends message
+  \item Recipient receives notification
+\end{enumerate}
+
+\noindent \textbf{Postconditions:}
+\begin{itemize}
+  \item Notification about a new message sent to the Recipient
+  \item System stores new message and updates the chat history
+  \item If no previous chat history with the Recipient, System adds
+    new chat to the chat history, available from User dashboard
+\end{itemize}
 
 \subsection{Functional requirements}
 
@@ -275,81 +312,84 @@ pdfauthor = {Marta Borek \and Krzysztof Fijałkowski \and Tomasz Owienko \and Mi
 \paragraph{Registration}
 
 \begin{itemize}
-\item Through Google account
-\item Requires a one time registration fee
+  \item Through Google account
+  \item Requires a one time registration fee
 \end{itemize}
 
 \paragraph{User Profile}
 \begin{itemize}
-\item Each user owns a profile with editable personal data
-\item Additionally:
-  \begin{itemize}
-  \item \textit{Handymen} profiles contain:
+  \item Each user owns a profile with editable personal data
+  \item Additionally:
     \begin{itemize}
-    \item skills and specialization areas
-    \item User ratings and comments from previous jobs
-    \item Calendar with availability
+      \item \textit{Handymen} profiles contain:
+        \begin{itemize}
+          \item skills and specialization areas
+          \item User ratings and comments from previous jobs
+          \item Calendar with availability
+        \end{itemize}
+      \item \textit{Customers} profiles contain:
+        \begin{itemize}
+          \item Booking history
+          \item Ratings for previous bookings
+        \end{itemize}
     \end{itemize}
-  \item \textit{Customers} profiles contain:
-    \begin{itemize}
-    \item Booking history
-    \item Ratings for previous bookings
-    \end{itemize}
-  \end{itemize}
 \end{itemize}
 
 \paragraph{Ratings and Comments}
 \begin{itemize}
-\item Customers can leave feedback for the jobs from the Booking History
-\item Feedback in a form of a star range rating (scale up to 5 or 10) and an optional comment
+  \item Customers can leave feedback for the jobs from the Booking History
+  \item Feedback in a form of a star range rating (scale up to 5 or
+    10) and an optional comment
 \end{itemize}
 
 \subsubsection{Calendar}
 \begin{itemize}
-\item Handymen manage their availability in a personal calendar, which is visible on their profile
-\item Customers view Handymen's calendar on their profile and can make booking requests within the free slots
+  \item Handymen manage their availability in a personal calendar,
+    which is visible on their profile
+  \item Customers view Handymen's calendar on their profile and can
+    make booking requests within the free slots
 \end{itemize}
 
 \subsubsection{Bookings Management}
 
 \paragraph{Handyman Search}
 
-\item System for searching and filtering Handymen profiles according to:
+System for searching and filtering Handymen profiles according to:
 \begin{itemize}
-\item skills
-\item price
-\item location or geographical range
-\item availability
-\item customer rating
+  \item skills
+  \item price
+  \item location or geographical range
+  \item availability
+  \item customer rating
 \end{itemize}
 
 \paragraph{Booking placement}
 
 Through calendars available at Handyman profiles, Customers can place bookings:
 \begin{itemize}
-\item Bookings can be accepted or declined by Handymen
-\item Bookings can be canceled by both Handymen and Customers, regardless of their status
-\item Status change of a Booking results in a notification to the second party
+  \item Bookings can be accepted or declined by Handymen
+  \item Bookings can be canceled by both Handymen and Customers,
+    regardless of their status
+  \item Status change of a Booking results in a notification to the second party
 \end{itemize}
 
 \paragraph{Report generation}
 
-Automatic statistical report generation per Handyman profile. Includes: 
+Automatic statistical report generation per Handyman profile. Includes:
 \begin{itemize}
-\item bookings count
-\item work hours
-\item earnings
-\item types of services
+  \item bookings count
+  \item work hours
+  \item earnings
+  \item types of services
 \end{itemize}
 
 \subsubsection{Communicator}
 \begin{itemize}
-\item User Chat for communication between Handymen and Customers
-\item Code for Booking confirmation and identity authentication sent via chat 
+  \item User Chat for communication between Handymen and Customers
+  \item Code for Booking confirmation and identity authentication sent via chat
 \end{itemize}
 
 \subsection{Non-functional requirements}
-
 
 \section{System Architecture}
 
@@ -361,8 +401,6 @@ Automatic statistical report generation per Handyman profile. Includes:
 
 \subsection{Web Server}
 
-
 \section{Security threat model}
-
 
 \end{document}
