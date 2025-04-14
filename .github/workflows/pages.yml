@@ -1,0 +1,56 @@
+name: Deploy PDF
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Ref to build
+        required: false
+        default: main
+
+env:
+  TEXLIVE_IMG_VERSION: 20250401
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || 'main' }}
+
+      - name: Build
+        uses: xu-cheng/latex-action@3.2.0
+        with:
+          root_file: hands4hire_doc.tex
+          docker_image: ghcr.io/xu-cheng/texlive-full:${{ env.TEXLIVE_IMG_VERSION }}
+
+      - name: Copy
+        run: |
+          mkdir out
+          cp ./hands4hire_doc.pdf ./out/docs.pdf
+
+      - name: Add index.html
+        run: |
+          echo '<object data="https://25l-ersms.github.io/documentation/docs.pdf" type="application/pdf" width="100%" height="100%">
+          <embed src="https://docs.google.com/viewer?url=https://25l-ersms.github.io/documentation/docs.pdf" type="application/pdf" width="100%" height="100%">
+          </object>' > out/index.html
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: docs
+          path: out/docs.pdf
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.7.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          clean: true
+          folder: out
+          git-config-name: ersms-bot
+          git-config-email: bot@noreply.ersms.com
