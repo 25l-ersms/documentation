@@ -7,6 +7,7 @@
 \usepackage{mathptmx} % Use Times Font
 
 \usepackage[pdftex]{graphicx} % Required for including pictures
+\graphicspath{{figures/}}
 \usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} %
 % Format links for pdf
 \usepackage{calc} % To reset the counter in the document after title page
@@ -33,15 +34,40 @@ bmargin=0.1111\paperheight]{geometry} %margins
   Niedzielski}
 }
 
-%-----------------------
-% Begin document
-%-----------------------
-\begin{document}
+% --------------------------
+% Custom titlepage
+% --------------------------
+\makeatletter
+\def\@maketitle{%
+  \begin{center}
+    \includegraphics[width=0.3\textwidth]{logo.png}\par\vspace{1cm} % <- Path to your logo
+    {\LARGE \@title \par}
+    \vskip 1em
+    {\large
+      \lineskip .5em
+      \begin{tabular}[t]{c}
+        \@author
+      \end{tabular}\par}
+    \vskip 1em
+    {\large \@date}
+  \end{center}
+}
+\makeatother
 
 \title{Hands4Hire - platform for connecting handymen with customers}
 \author{Marta Borek \and Krzysztof Fijałkowski \and Tomasz Owienko
 \and Michał Jakomulski \and Wojciech Sekuła \and Arkadiusz Niedzielski}
 \date{}
+%-----------------------
+% Begin document
+%-----------------------
+\begin{document}
+
+% \title{Hands4Hire - platform for connecting handymen with customers}
+% \author{Marta Borek \and Krzysztof Fijałkowski \and Tomasz Owienko
+% \and Michał Jakomulski \and Wojciech Sekuła \and Arkadiusz Niedzielski}
+% \date{}
+
 \maketitle
 
 \setcounter{tocdepth}{2}
@@ -64,7 +90,7 @@ bmargin=0.1111\paperheight]{geometry} %margins
   \item Authenticates Google account
   \item Picks role
     \begin{itemize}[noitemsep]
-      \item \textit{Handyman} - service provider
+      \item \textit{Vendor} - service provider
       \item \textit{Customer} - service recipient
     \end{itemize}
   \item Provides detailed data necessary for the role
@@ -76,7 +102,7 @@ bmargin=0.1111\paperheight]{geometry} %margins
 
 \subsubsection{Edit Profile}
 
-\textbf{Actor:} Registered Customer or Handyman
+\textbf{Actor:} Registered Customer or Vendor
 
 \noindent \textbf{Preconditions:} User is logged in
 
@@ -92,13 +118,13 @@ bmargin=0.1111\paperheight]{geometry} %margins
 
 \subsubsection{Update Calendar}
 
-\textbf{Actor:} Registered Handyman
+\textbf{Actor:} Registered Vendor
 
-\noindent \textbf{Preconditions:} Handyman is logged in
+\noindent \textbf{Preconditions:} Vendor is logged in
 
 \noindent \textbf{Basic steps:}
 \begin{enumerate}
-  \item Handyman opens calendar from profile page
+  \item Vendor opens calendar from profile page
   \item Adds/deletes available slots
   \item Can change status of a previously \textit{accepted} booking
     to \textit{canceled}
@@ -110,11 +136,11 @@ bmargin=0.1111\paperheight]{geometry} %margins
 \begin{itemize}
   \item \textit{Canceled} booking removed from the calendar, still
     visible in history
-  \item Updated calendar is reflected in searches and Handyman profile
+  \item Updated calendar is reflected in searches and Vendor profile
   \item Customer gets notification about Booking's status change
 \end{itemize}
 
-\subsubsection{Search for Handyman}
+\subsubsection{Search for Vendor}
 
 \textbf{Actor:} Registered Customer
 
@@ -126,25 +152,25 @@ bmargin=0.1111\paperheight]{geometry} %margins
   \item Selects filters (e.g. type of service, geographical range,
     availability, customer rating)
   \item Submits search
-  \item System displays matching Handymen profiles
+  \item System displays matching Vendors profiles
 \end{enumerate}
 
 \noindent \textbf{Postconditions:} Filtered list is shown
 
-\subsubsection{View Handyman Profile}
+\subsubsection{View Vendor Profile}
 
-\textbf{Actor:} Registered Customer or Handyman
+\textbf{Actor:} Registered Customer or Vendor
 
 \noindent \textbf{Preconditions:}
 \begin{enumerate}
   \item User is logged in
-  \item Handyman Search/Filtering results available
-  \item \textbf{Or For Customer:} Handyman already in Customer's Booking History
+  \item Vendor Search/Filtering results available
+  \item \textbf{Or For Customer:} Vendor already in Customer's Booking History
 \end{enumerate}
 
 \noindent \textbf{Basic steps:}
 \begin{enumerate}
-  \item Select Handyman from Search List or Booking History
+  \item Select Vendor from Search List or Booking History
   \item View Full Profile
     \begin{itemize}
       \item Contact Info
@@ -154,21 +180,21 @@ bmargin=0.1111\paperheight]{geometry} %margins
     \end{itemize}
 \end{enumerate}
 
-\noindent \textbf{Postconditions:} System displays public Handyman's Profile
+\noindent \textbf{Postconditions:} System displays public Vendor's Profile
 
-\subsubsection{Book Handyman}
+\subsubsection{Book Vendor}
 
 \textbf{Actor:} Registered Customer
 
 \noindent \textbf{Preconditions:}
 \begin{enumerate}
   \item Customer is logged in
-  \item Selected Handyman's Profile open
+  \item Selected Vendor's Profile open
 \end{enumerate}
 
 \noindent \textbf{Basic steps:}
 \begin{enumerate}
-  \item Select time slot from Handyman's Calendar
+  \item Select time slot from Vendor's Calendar
   \item Leave optional service note
   \item Submit request
 \end{enumerate}
@@ -178,18 +204,46 @@ bmargin=0.1111\paperheight]{geometry} %margins
   \item Booking request stored in the system with \textit{pending} status
   \item Request added to Customer's booking history, visible in
     Customer's dashboard
-  \item Notification sent to Handyman, request visible in Handyman's dashboard
+  \item Notification sent to Vendor, request visible in Vendor's dashboard
+\end{itemize}
+
+
+\subsubsection{Identity Verification during Visit}
+
+\textbf{Actor:} Registered Customer and Registered Vendor
+
+\noindent \textbf{Preconditions:}
+\begin{enumerate}
+  \item Customer is logged in
+  \item Vendor is logged in
+  \item Current time corresponds to predefined range before/during/after the scheduled Booking time (e.g., Booking time slot + 30 minutes before and after the slot )
+\end{enumerate}
+
+\noindent \textbf{Basic steps:}
+\begin{enumerate}
+  \item Customer gets notification about the upcoming visit + verification code (both email and in-app)
+  \item Vendor selects appropriate Booking from their Booking List
+  \item Selects ``Verify''
+  \item Enters Customer's code into a form
+  \item Vendor sends completed form
+  \item Vendor gets immediate feedback on whether the code matches \& option to retry if incorrect
+\end{enumerate}
+
+\noindent \textbf{Postconditions:}
+\begin{itemize}
+  \item Booking gets status update to \textit{verified} in Customer's and Vendor's Booking Histories
+  \item Notification about the Booking verification sent to both parties
 \end{itemize}
 
 \subsubsection{View Customer Profile}
 
-\textbf{Actor:} Registered Handyman or Customer
+\textbf{Actor:} Registered Vendor or Customer
 
 \noindent \textbf{Preconditions:}
 \begin{enumerate}
   \item User is logged in
-  \item Handyman received Booking from a Customer
-  \item OR User views comments left by other Customers on Handyman's Profile
+  \item Vendor received Booking from a Customer
+  \item OR User views comments left by other Customers on Vendor's Profile
 \end{enumerate}
 
 \noindent \textbf{Basic steps:}
@@ -207,17 +261,17 @@ bmargin=0.1111\paperheight]{geometry} %margins
 
 \subsubsection{Accept or Decline Booking}
 
-\textbf{Actor:} Registered Handyman
+\textbf{Actor:} Registered Vendor
 
 \noindent \textbf{Preconditions:}
 \begin{enumerate}
-  \item Handyman received Booking from a Customer
+  \item Vendor received Booking from a Customer
   \item Booking status is \textit{pending}
 \end{enumerate}
 
 \noindent \textbf{Basic steps:}
 \begin{enumerate}
-  \item Handyman received a Booking Request notification (in-app/e-mail)
+  \item Vendor received a Booking Request notification (in-app/e-mail)
   \item Notification redirection to Booking Request, with eventual
     authentication step
   \item OR Open Booking request directly from dashboard
@@ -228,7 +282,7 @@ bmargin=0.1111\paperheight]{geometry} %margins
       \item Service note from the Customer
       \item Current status \textit{pending, canceled}
     \end{itemize}
-  \item If not \textit{canceled} Handyman can Accept or Decline with
+  \item If not \textit{canceled} Vendor can Accept or Decline with
     designated buttons
   \item System confirms the status update
 \end{enumerate}
@@ -236,8 +290,8 @@ bmargin=0.1111\paperheight]{geometry} %margins
 \noindent \textbf{Postconditions:}
 \begin{itemize}
   \item Booking status changes to \textit{accepted} or \textit{declined}
-  \item If \textit{accepted}, is now visible in the Handyman
-    availability Calendar and will be reflected in the Handyman Searches
+  \item If \textit{accepted}, is now visible in the Vendor
+    availability Calendar and will be reflected in the Vendor Searches
   \item Customer gets a notification about the Booking status change
 \end{itemize}
 
@@ -258,7 +312,7 @@ bmargin=0.1111\paperheight]{geometry} %margins
     Booking Request, with eventual authentication step
   \item Booking entry shows:
     \begin{itemize}
-      \item Booked Handyman
+      \item Booked Vendor
       \item Date, Time \& Duration
       \item Service note from the Customer
       \item Current status \textit{accepted, declined, pending, canceled}
@@ -271,15 +325,15 @@ bmargin=0.1111\paperheight]{geometry} %margins
 \noindent \textbf{Postconditions:}
 \begin{itemize}
   \item Booking status changes to \textit{canceled}
-  \item If previously \textit{accepted} by Handyman, it is now
-    removed from the Handyman availability Calendar and will be
-    reflected in the Handyman Searches
-  \item Handyman gets a notification about the Booking status change
+  \item If previously \textit{accepted} by Vendor, it is now
+    removed from the Vendor availability Calendar and will be
+    reflected in the Vendor Searches
+  \item Vendor gets a notification about the Booking status change
 \end{itemize}
 
-\subsubsection{Contact Between Customer \& Handyman}
+\subsubsection{Contact Between Customer \& Vendor}
 
-\textbf{Actor:} Registered Customer or Handyman
+\textbf{Actor:} Registered Customer or Vendor
 
 \noindent \textbf{Preconditions:}
 \begin{enumerate}
@@ -305,6 +359,34 @@ bmargin=0.1111\paperheight]{geometry} %margins
     new chat to the chat history, available from User dashboard
 \end{itemize}
 
+\subsubsection{Comment \& Rate Past Booking }
+
+\textbf{Actor:} Registered Customer
+
+\noindent \textbf{Preconditions:}
+\begin{enumerate}
+  \item Booking accepted by Vendor
+  \item Successful identity verification of Booking parties
+  \item Booking time slot passed
+\end{enumerate}
+
+\noindent \textbf{Basic steps:}
+\begin{enumerate}
+  \item User selects Booking from their Booking History
+  \item User selects ``Rate and Comment''
+  \item Enters rating within a specified range
+  \item AND/OR Writes a comment  
+  \item Selects ``Publish''
+\end{enumerate}
+
+\noindent \textbf{Postconditions:}
+\begin{itemize}
+  \item Notification about a new rating sent to the Vendor
+  \item System stores new rating and updates the affected Vendor's profile
+  \item Booking marked with \textit{rated} status in Client's Booking History
+  \item Client cannot leave another comment/rating on that Booking
+\end{itemize}
+
 \subsection{Functional requirements}
 
 \subsubsection{User Profile Management}
@@ -321,7 +403,7 @@ bmargin=0.1111\paperheight]{geometry} %margins
   \item Each user owns a profile with editable personal data
   \item Additionally:
     \begin{itemize}
-      \item \textit{Handymen} profiles contain:
+      \item \textit{Vendors} profiles contain:
         \begin{itemize}
           \item skills and specialization areas
           \item User ratings and comments from previous jobs
@@ -344,17 +426,17 @@ bmargin=0.1111\paperheight]{geometry} %margins
 
 \subsubsection{Calendar}
 \begin{itemize}
-  \item Handymen manage their availability in a personal calendar,
+  \item Vendors manage their availability in a personal calendar,
     which is visible on their profile
-  \item Customers view Handymen's calendar on their profile and can
+  \item Customers view Vendors's calendar on their profile and can
     make booking requests within the free slots
 \end{itemize}
 
 \subsubsection{Bookings Management}
 
-\paragraph{Handyman Search}
+\paragraph{Vendor Search}
 
-System for searching and filtering Handymen profiles according to:
+System for searching and filtering Vendors profiles according to:
 \begin{itemize}
   \item skills
   \item price
@@ -365,17 +447,17 @@ System for searching and filtering Handymen profiles according to:
 
 \paragraph{Booking placement}
 
-Through calendars available at Handyman profiles, Customers can place bookings:
+Through calendars available at Vendor profiles, Customers can place bookings:
 \begin{itemize}
-  \item Bookings can be accepted or declined by Handymen
-  \item Bookings can be canceled by both Handymen and Customers,
+  \item Bookings can be accepted or declined by Vendors
+  \item Bookings can be canceled by both Vendors and Customers,
     regardless of their status
   \item Status change of a Booking results in a notification to the second party
 \end{itemize}
 
 \paragraph{Report generation}
 
-Automatic statistical report generation per Handyman profile. Includes:
+Automatic statistical report generation per Vendor profile. Includes:
 \begin{itemize}
   \item bookings count
   \item work hours
@@ -385,7 +467,7 @@ Automatic statistical report generation per Handyman profile. Includes:
 
 \subsubsection{Communicator}
 \begin{itemize}
-  \item User Chat for communication between Handymen and Customers
+  \item User Chat for communication between Vendors and Customers
   \item Code for Booking confirmation and identity authentication sent via chat
 \end{itemize}
 
@@ -393,13 +475,16 @@ Automatic statistical report generation per Handyman profile. Includes:
 
 \section{System Architecture}
 
-\subsection{Visti Scheduler Module}
+\subsection{Visit Scheduler Module}
 
 \subsection{Visit Manager Module}
 
 \subsection{User Chat}
 
 \subsection{Web Server}
+
+\subsection{Kafka Topics}
+
 
 \section{Security threat model}
 
