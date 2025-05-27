@@ -5,7 +5,7 @@
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx} % Use Times Font
-
+\usepackage{float}
 \usepackage[pdftex]{graphicx} % Required for including pictures
 \graphicspath{{figures/}}
 \usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} %
@@ -487,7 +487,7 @@ Automatic statistical report generation per Vendor profile. Includes:
 \item \textbf{\slash vendor/my\_visits} - returns a list of visits that a Vendor has scheduled
 \item \textbf{\slash get\_visit\_code} - returns generated code for Vendor's identity confirmation during the visit (hash of visit\_id for simplicity reasons)
 \item \textbf{\slash check\_visit\_code} - returns information about validity of the code submitted in a request by the Customer
-\item \textbf{\slash add\_opinion} - enabled only after the scheduled visit took place, allows Customer to leave a rating and review
+\item \textbf{\slash add\_opinion} - enabled only after the scheduled visit took place, allows Customer to leave a rating (1-5 scale) and review
 \end{itemize}
 
 
@@ -495,8 +495,14 @@ Automatic statistical report generation per Vendor profile. Includes:
 
 \subsection{Web Server}
 
-\subsection{Kafka Topics}
+\subsection{Kafka}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{H4H_Kafka.png}
+  \caption{Kafka Topics Diagram}
+  \label{fig:kafka-topics-diagram}
+\end{figure}
 
 \section{Security threat model}
 
