@@ -483,6 +483,28 @@ Automatic statistical report generation per Vendor profile. Includes:
 \end{itemize}
 
 \subsection{Non-functional requirements}
+\begin{itemize}
+\item \textbf{Architecture}
+  As dictated by the general project requirements:
+  \begin{itemize}
+  \item Application is hosted on a public cloud (Google Cloud Provider)
+  \item Application consists of at least 3 types of microservices
+  \item The infrastructure build and setup are automated with the use of automation tool, Terraform
+  \item Database and state are owned by each microservice type separately, with two of them having private cache of the other's data subset
+  \end{itemize}
+\item \textbf{Performance \& Responsiveness}
+  System should support real-time updates for chat and booking confirmations.
+\item \textbf{Authorization \& Security}
+  \begin{itemize}
+  \item User identity verification is done with the use of trusted identity provider Google OAuth 2.0
+  \item Authentication in payment processing is done via Stripe secret keys, securely stored in GCP Secret Manager
+  \end{itemize}
+\item \textbf{Maintainability \& Observability}
+  \begin{itemize}
+  \item The use of automation tool, Terraform, allows for reproducible deployment
+  \item All microservices emit structured messages to Kafka and the Google Cloud Logging Agent
+  \end{itemize}
+\end{itemize}
 
 \section{System Architecture}
 
