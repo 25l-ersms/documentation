@@ -479,6 +479,18 @@ Automatic statistical report generation per Vendor profile. Includes:
 
 \subsection{Visit Manager Module}
 
+\subsubsection{Available endpoints}
+\begin{itemize}
+\item \textbf{\slash register} - submit User's registration details
+\item \textbf{\slash register\_visit} - visit registration, passed from the Visit Scheduler module, which handles Customer's input
+\item \textbf{\slash client/my\_visits} - 
+\item \textbf{\slash vendor/my\_visits} - returns a list of visits that a Vendor has scheduled
+\item \textbf{\slash get\_visit\_code} - returns generated code for Vendor's identity confirmation during the visit (hash of visit\_id for simplicity reasons)
+\item \textbf{\slash check\_visit\_code} - returns information about validity of the code submitted in a request by the Customer
+\item \textbf{\slash add\_opinion} - enabled only after the scheduled visit took place, allows Customer to leave a rating and review
+\end{itemize}
+
+
 \subsection{User Chat}
 
 \subsection{Web Server}
