@@ -6,6 +6,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx} % Use Times Font
 \usepackage{float}
+\usepackage{pdfpages}
 \usepackage[pdftex]{graphicx} % Required for including pictures
 \graphicspath{{figures/}}
 \usepackage[pdftex,linkcolor=black,pdfborder={0 0 0}]{hyperref} %
@@ -25,6 +26,7 @@ bmargin=0.1111\paperheight]{geometry} %margins
 
 %-----------------------
 % Set pdf information and add title, fill in the fields
+
 %-----------------------
 \hypersetup{
   pdfsubject = {},
@@ -539,4 +541,12 @@ Automatic statistical report generation per Vendor profile. Includes:
 
 \section{Security threat model}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{DFD-threat-model.png}
+  \caption{Threat modeling Data Flow Diagram}
+  \label{fig:DFD-threat-model}
+\end{figure}
+
+\includepdf[pages=-]{figures/H4H-threat-report.pdf}
 \end{document}
