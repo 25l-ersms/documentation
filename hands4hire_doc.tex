@@ -87,7 +87,66 @@ At the same time, Vendors benefit from a dedicated space to showcase their servi
 
 By streamlining this process, we aim to create a modern, scalable, and accessible ecosystem that benefits both sides of the marketplace.
 
+\subsection{Target Audience}
+
+This platform is designed for two primary user groups:
+
+\begin{itemize}
+\item \textbf{Customers} seeking reliable, local household service providers for specialized repairs and general handyman work
+\item \textbf{Vendors}, including self-employed professionals or small service companies, who want to expand their client base, manage bookings, and improve service visibility through digital means
+\end{itemize}
+
+Additionally, system administrators form a third side, responsible for managing operations, analytics, and support.
+
+\subsection{Business Goals}
+
+\subsection{Competitive landscape}
+
+The platform operates within a growing ecosystem of digital solutions that connect individuals with service professionals. Notable competitors in the Polish market include:
+
+\begin{itemize}
+\item \textbf{Fixly.pl} – A popular platform that connects customers with professionals for a variety of services. While Fixly provides broad access it does not offer full transparency in availability and pricing, necessitating back-and-forth communication outside the platform.
+\item \textbf{Fucha} – A mobile-first app targeting gig workers and handymen seeking flexible jobs. Its informal structure and focus on short-term work make it less ideal for customers seeking scheduled and longer-term services.
+\item \textbf{Oferteo.pl} – A marketplace where service providers are matched to customers via quote requests. While it supports a wide range of services the communication is often moved off-platform.
+\item \textbf{OLX} and \textbf{Allegro} – Although primarily used for selling products, both platforms include service advertisements. However, they do not offer structured scheduling and availability management.
+\end{itemize}
+    
+Our platform differentiates itself by providing:
+
+\begin{itemize}
+\item Real-time vendor availability and booking through an integrated calendar system.
+\item Build-in identity verification at the beginning of the visit.
+\item End-to-end communication and payment capabilities, keeping the full service lifecycle within the platform.
+\end{itemize}
+
+This combination of transparency, control, and trust positions our platform as a modern and comprehensive solution to the traditional word-of-mouth and classified-based service discovery methods.
+
+\subsection{Monetization Strategy}
+
+At present, the platform generates revenue through a one-time registration fee for all Users, ensuring commitment and basic verification before entering the marketplace.
+
+Planned and evolving monetization strategies to be introduced in future iterations include:
+
+\begin{itemize}
+\item Advertisement-based revenue, allowing for on-platform advertising placements, targeted by region or service category.
+\item Featured listings and promotional boosts, giving vendors the opportunity to gain increased visibility through paid placement on the search interface or homepage.
+\item Future subscription tiers, which will introduce optional paid plans for vendors, unlocking features such as:
+  \begin{itemize}
+  \item Advanced analytics and insights into the Vendor company's prosperity
+  \item Priority customer support
+  \end{itemize}
+\item Transaction-based commissions where the platform will retain a small percentage of each successful service payment. This model will also enable:
+  \begin{itemize}
+  \item Enhanced platform guarantees and dispute resolution support
+  \item Insurance and reliability features, increasing customer trust and reducing risk
+  \end{itemize}
+\item Affiliate partnerships with home improvement brands, insurance providers, or tool suppliers, creating added value and convenience for the Users and new revenue streams.
+\end{itemize}
+
+This multi-layered strategy will enable the platform to upgrade its services while continuously adding more avenues for income.
+
 \section{Requirements}
+This section begins with a set of \textbf{Use Cases}, which describe typical interactions and workflows from the perspectives of end-users, highlighting functionalities and characteristics of the service. Core system behaviors identified in this process, such as user authentication and visits management, are detailed in the Functional Requirements. The Non-Functional Requirements cover system attributes such as scalability, performance and security, to be achieved through the general structural criteria of the platform and the tools selected for its development.
 
 \subsection{Use cases}
 
@@ -246,7 +305,7 @@ By streamlining this process, we aim to create a modern, scalable, and accessibl
 \begin{itemize}
   \item Booking gets status update to \textit{verified} in Customer's and Vendor's Booking Histories
   \item Notification about the Booking verification sent to both parties
-\end{itemize}
+v\end{itemize}
 
 \subsubsection{View Customer Profile}
 
@@ -407,8 +466,8 @@ By streamlining this process, we aim to create a modern, scalable, and accessibl
 \paragraph{Registration}
 
 \begin{itemize}
-  \item Through Google account
-  \item Requires a one time registration fee
+  \item Users get registered through their Google account
+  \item Account creation process requires a one time registration fee
 \end{itemize}
 
 \paragraph{User Profile}
@@ -418,14 +477,19 @@ By streamlining this process, we aim to create a modern, scalable, and accessibl
     \begin{itemize}
       \item \textit{Vendors} profiles contain:
         \begin{itemize}
-          \item skills and specialization areas
+          \item Skills and specialization areas
           \item User ratings and comments from previous jobs
-          \item Calendar with availability
+          \item Calendar with their availability 
         \end{itemize}
       \item \textit{Customers} profiles contain:
         \begin{itemize}
           \item Booking history
           \item Ratings for previous bookings
+        \end{itemize}
+      \item  \textit{Administrator} profile holds a privileged access and can:
+        \begin{itemize}
+        \item Manage Users
+        \item View Vendors' system reports
         \end{itemize}
     \end{itemize}
 \end{itemize}
@@ -449,13 +513,13 @@ By streamlining this process, we aim to create a modern, scalable, and accessibl
 
 \paragraph{Vendor Search}
 
-System for searching and filtering Vendors profiles according to:
+Functionality for searching and filtering Vendors profiles according to:
 \begin{itemize}
-  \item skills
-  \item price
-  \item location or geographical range
-  \item availability
-  \item customer rating
+  \item Skills
+  \item Price
+  \item Location or geographical range
+  \item Availability
+  \item Customer rating
 \end{itemize}
 
 \paragraph{Booking placement}
@@ -472,10 +536,10 @@ Through calendars available at Vendor profiles, Customers can place bookings:
 
 Automatic statistical report generation per Vendor profile. Includes:
 \begin{itemize}
-  \item bookings count
-  \item work hours
-  \item earnings
-  \item types of services
+  \item Bookings count
+  \item Work hours
+  \item Earnings
+  \item Types of services
 \end{itemize}
 
 \subsubsection{Communicator}
