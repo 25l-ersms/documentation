@@ -895,7 +895,7 @@ Reusable GitHub workflows were employed for tasks like pushing Docker images to 
 \begin{figure}
   \centering
   \fullpageimage{kubectl.png}
-  \caption{Kubectl diagram}
+  \caption{Kubernetes component diagram.}
   \label{fig:kubectl}
 \end{figure}
 Upon code push or merge to the main branch, when targeting the production environment, GitHub Actions executes
@@ -914,7 +914,7 @@ infrastructure-as-code consistency and safe rollbacks.
 \begin{figure}[H]
   \centering
   \fullpageimage{terraform.png}
-  \caption{Terraform diagram}
+  \caption{Cloud infrastructure diagram.}
   \label{fig:terraform}
 \end{figure}
 
@@ -953,11 +953,12 @@ The security strategies outlined above were designed to address and mitigate a w
 
 Threat modeling process has been conducted with accordance to the \textbf{STRIDE} framework.  
 It was chosen for its structured way to analyze threats across various components of a system. Its broad coverage of both technical and procedural risks makes it particularly suitable for cloud-native, microservice-based architectures like ours. By applying STRIDE, we were able to identify vulnerabilities at both the infrastructure and application levels, ensuring that security concerns were proactively integrated into the design and implementation phases of the project.
-Modeling process's outcome is showcased on the following pages as a single, summary document generated with the use of OWASP Threat Draagon modeling software. 
+Modeling process's outcome is showcased on the following pages as a single, summary document generated with the use of OWASP Threat Dragon modeling software. 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{DFD-threat-model.png}
+  % \includegraphics[width=\textwidth]{DFD-threat-model.png}
+\fullpageimage{DFD-threat-model.png}
   \caption{Threat modeling Data Flow Diagram}
   \label{fig:DFD-threat-model}
 \end{figure}
